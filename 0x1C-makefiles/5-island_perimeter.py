@@ -1,27 +1,21 @@
 #!/usr/bin/python3
-"""
-Create a function def island_perimeter(grid):
- that returns the perimeter of the island
-"""
+"""Function island_perimeter(grid)"""
+
+
 def island_perimeter(grid):
-    """ Function that returns the perimeter of islan""""
-    perimeter = 0
+    """returns the perimeter of the island described in grid.
 
-    numberRows = len(grid)
-
-    if grid != []:
-        numberColumns = len(grid[0])
-
-    for a in range(numberRows):
-        for b in range(numberColumns):
-            if grid[a][b] == 1:
-                if (a - 1) == -1 or grid[a - 1][b] == 0:
-                    perimeter += 1
-                if (a + 1) == numberRows or grid[a + 1][b] == 0:
-                    perimeter += 1
-                if (b - 1) == -1 or grid[a][b - 1] == 0:
-                    perimeter += 1
-                if (b + 1) == numberColumns or grid[a][b + 1] == 0:
-                    perimeter += 1
-
-    return perimeter
+    Args:
+        grid (list): grid
+    """
+    m, n = len(grid), len(grid[0])
+    land, neighbour = 0, 0
+    for i in range(m):
+        for j in range(n):
+            if grid[i][j] == 1:
+                land += 1
+                if i < m - 1 and grid[i+1][j] == 1:
+                    neighbour += 1
+                if j < n - 1 and grid[i][j + 1] == 1:
+                    neighbour += 1
+    return land * 4 - 2 * neighbour
